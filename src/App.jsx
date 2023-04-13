@@ -7,11 +7,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ListCard from "./components/ListCard";
+import * as storage from "./utils/handlers/storage.js";
 
 function App() {
+  let storedItems = storage.load("listItems");
+  if (storedItems === null) {
+    storedItems = [];
+  }
+
   const [searchInput, setSearchInput] = useState("");
-  const { data, isLoading, isError } = useApi(baseUrl + `/?search=` + searchInput);
-  const [listItems, setListItems] = useState([]);
+  let searchUrl = baseUrl + `/?size=5&search=` + searchInput;
+  const { data, isError } = useApi(searchUrl);
+  const [listItems, setListItems] = useState(storedItems);
+
+  if (isError) {
+    return <h1 className="text-center my-3">Error Loading Products Contact Admin</h1>;
+  }
 
   function addToList(product) {
     const listItemIndex = listItems.findIndex((item) => item.name === product.name);
@@ -19,9 +30,12 @@ function App() {
       const newListItemData = [...listItems];
       newListItemData[listItemIndex].quantity += 1;
       setListItems(newListItemData);
+      setSearchInput("");
+      storage.save("listItems", newListItemData);
     } else {
       setListItems([...listItems, { ...product, quantity: 1 }]);
       setSearchInput("");
+      storage.save("listItems", [...listItems, { ...product, quantity: 1 }]);
     }
   }
 
@@ -33,28 +47,18 @@ function App() {
       if (quantity > 1) {
         newListItemData[listItemIndex].quantity -= 1;
       } else {
+        storage.remove(newListItemData[listItemIndex].name);
         newListItemData.splice(listItemIndex, 1);
       }
       setListItems(newListItemData);
+      storage.save("listItems", newListItemData);
     }
   }
 
   function clearList() {
     setListItems([]);
+    localStorage.clear();
   }
-
-  console.log(listItems);
-
-  const groupedItems = listItems.reduce((groups, item) => {
-    if (!groups[item.venue]) {
-      groups[item.venue] = [];
-    }
-    groups[item.venue].push(item);
-    return groups;
-  }, {});
-
-  // Log the result
-  console.log(groupedItems);
 
   return (
     <>
@@ -64,16 +68,17 @@ function App() {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         listItems={listItems}
-        setListItems={setListItems}
       />
       <main className="d-flex flex-column flex-grow-1">
-        <div className="m-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-1">
-          {listItems?.map((product, index) => (
-            <ListCard key={index} product={product} addToList={addToList} removeFromList={removeFromList} />
-          ))}
+        <div className="container">
+          <div className="row g-1 row-cols-1 row-cols-md-2 row-cols-xl-3 ">
+            {listItems?.map((product, index) => (
+              <ListCard key={index} product={product} addToList={addToList} removeFromList={removeFromList} />
+            ))}
+          </div>
         </div>
         {listItems.length > 0 ? (
-          <button onClick={() => clearList()} className="w-auto my-3 m-auto btn btn-secondary">
+          <button onClick={() => clearList()} className="my-3 m-auto btn btn-secondary">
             Tøm listen
           </button>
         ) : (

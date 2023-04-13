@@ -10,7 +10,7 @@ function SearchDropdown({ data, searchInput, addToList }) {
             <ListGroup.Item key={index} className="d-flex">
               <div className="align-items-center">{product.name}</div>
               <div className="ms-auto">
-                <button onClick={() => addToList(product)} className="m-1 btn btn-secondary">
+                <button onClick={() => addToList(product)} className="m-1 btn btn-secondary text-nowrap">
                   Legg til
                 </button>
               </div>

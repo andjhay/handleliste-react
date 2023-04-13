@@ -13,18 +13,18 @@ function Search({ data, addToList, searchInput, setSearchInput }) {
   }
 
   return (
-    <Container className="w-75">
+    <Container>
       <div className="d-flex flex-row justify-content-center">
         <Form.Control
           id="search-box"
           className="w-auto flex-grow-1"
           onChange={onChange}
           value={searchInput}
-          placeholder="Search"
+          placeholder="Søk eller legg til her"
           aria-label="Search"
         />
         {searchInput.length > 0 ? (
-          <button onClick={() => addToList({ name: searchInput })} className="m-1 btn btn-secondary">
+          <button onClick={() => addToList({ name: searchInput })} className="m-1 btn btn-secondary text-nowrap">
             Legg til
           </button>
         ) : (

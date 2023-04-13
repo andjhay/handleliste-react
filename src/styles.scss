@@ -1,9 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Inter&display=swap");
+
 #dropdown-search {
   z-index: 1;
 }
 
-#list-img {
+img.img-fluid {
   object-fit: contain;
   max-height: 60px;
   max-width: 100px;
+}
+
+.form-check-input {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.btn-width {
+  width: 37px !important;
+  height: 37px !important;
+}
+
+div {
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+}
+
+div.col {
+  min-height: 50px;
 }
