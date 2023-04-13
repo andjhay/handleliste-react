@@ -30,7 +30,7 @@ function Search({ data, addToList, searchInput, setSearchInput }) {
           id="search-box"
           onChange={onChange}
           value={searchInput}
-          placeholder="Søk eller egen vare"
+          placeholder="Søk eller legg inn egen vare"
           aria-label="Search"
         />
         {searchInput.length > 0 ? (
