@@ -70,7 +70,7 @@ function App() {
    */
   function clearList() {
     setListItems([]);
-    storage.remove("listItems");
+    storage.save("listItems", []);
   }
 
   /**
@@ -109,7 +109,7 @@ function App() {
         </div>
         {listItems.length > 0 ? (
           <>
-            <span className="container-fluid text-black-50">* estimert men varier fra butikk til butikk.</span>
+            <span className="container-fluid text-black-50">*estimert men varier fra butikk til butikk.</span>
             <div className="container text-center">
               <button onClick={() => clearList()} className="mx-2 my-1 btn btn-secondary">
                 Fjern alle produkter

@@ -40,14 +40,17 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         onClick={() => removeFromList(product)}
         className={
           product.image
-            ? "mx-1 btn btn-width btn-secondary rounded-circle"
-            : "ms-auto mx-1 btn btn-width btn-secondary rounded-circle"
+            ? "mx-1 btn btn-width btn-secondary rounded-circle border border-2 border-dark"
+            : "ms-auto mx-1 btn btn-width btn-secondary rounded-circle border border-2 border-dark"
         }
       >
         -
       </button>
-      {product.quantity}
-      <button onClick={() => addToList(product)} className="mx-1 btn btn-width btn-secondary rounded-circle">
+      <span className="fw-bold">{product.quantity}</span>
+      <button
+        onClick={() => addToList(product)}
+        className="mx-1 btn btn-width btn-secondary rounded-circle border border-2 border-dark"
+      >
         +
       </button>
     </Card>
