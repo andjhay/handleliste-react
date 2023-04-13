@@ -6,12 +6,12 @@ import * as storage from "../../utils/handlers/storage";
 function ListCard({ product, listItems, addToList, removeFromList, setListItems }) {
   const [isChecked, setIsChecked] = useState(product.checked);
 
+  /**
+   * Updates checked items when item is removed from listItems
+   */
   useEffect(() => {
-    const checkedState = product.checked;
-    if (checkedState) {
-      setIsChecked(product.checked);
-    }
-  }, [product]);
+    setIsChecked(product.checked);
+  }, [product, listItems]);
 
   const handleCheckboxChange = (event) => {
     const newListItems = [...listItems];
@@ -31,13 +31,11 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         checked={isChecked}
         onChange={handleCheckboxChange}
       />
-      <span className={isChecked ? "text-decoration-line-through" : "none"}>
-        {product.name}
-        {product.current_price ? " - " + product.current_price.toFixed(2) + " kr stk" : ""}{" "}
-      </span>
-
+      <div>
+        <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name}</span> <br />
+        <span className="fw-bold">{product.current_price ? product.current_price.toFixed(2) + " kr pr stk*" : ""}</span>
+      </div>
       {product.image ? <img className="ms-auto img-fluid" alt={product.name} src={product.image} /> : ""}
-
       <button
         onClick={() => removeFromList(product)}
         className={

@@ -32,7 +32,7 @@ function App() {
   function addToList(product) {
     const listItemIndex = listItems.findIndex((item) => item.name === product.name);
     if (listItemIndex !== -1) {
-      const newListItemData = [...listItems];
+      let newListItemData = [...listItems];
       newListItemData[listItemIndex].quantity += 1;
       setListItems(newListItemData);
       setSearchInput("");
@@ -50,7 +50,7 @@ function App() {
    * @param {Object} product - The product object to remove.
    */
   function removeFromList(product) {
-    const newListItemData = [...listItems];
+    let newListItemData = [...listItems];
     const listItemIndex = newListItemData.findIndex((item) => item.name === product.name);
     if (listItemIndex !== -1) {
       const quantity = newListItemData[listItemIndex].quantity;
@@ -70,7 +70,17 @@ function App() {
    */
   function clearList() {
     setListItems([]);
-    localStorage.clear();
+    storage.remove("listItems");
+  }
+
+  /**
+   * Clears listItems that are checked.
+   */
+  function clearChecked() {
+    let newListItemData = [];
+    newListItemData = listItems.filter((item) => item.checked === false);
+    setListItems(newListItemData);
+    storage.save("listItems", newListItemData);
   }
 
   return (
@@ -83,7 +93,7 @@ function App() {
         listItems={listItems}
       />
       <main className="d-flex flex-column flex-grow-1">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row g-1 row-cols-1 row-cols-md-2 row-cols-xl-3 ">
             {listItems?.map((product, index) => (
               <ListCard
@@ -98,9 +108,17 @@ function App() {
           </div>
         </div>
         {listItems.length > 0 ? (
-          <button onClick={() => clearList()} className="my-3 m-auto btn btn-secondary">
-            Tøm listen
-          </button>
+          <>
+            <span className="container-fluid text-black-50">* estimert men varier fra butikk til butikk.</span>
+            <div className="container text-center">
+              <button onClick={() => clearList()} className="mx-2 my-1 btn btn-secondary">
+                Fjern alle produkter
+              </button>
+              <button onClick={() => clearChecked()} className="mx-2 my-1 btn btn-secondary">
+                Fjern markerte produkter
+              </button>
+            </div>
+          </>
         ) : (
           ""
         )}
