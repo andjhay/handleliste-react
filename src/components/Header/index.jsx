@@ -31,7 +31,7 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
       <Search data={data} addToList={addToList} searchInput={searchInput} setSearchInput={setSearchInput} />
       {listItems.length > 0 ? (
         <h4 className="text-center p-1">
-          {listItems.length} {listItems.length > 1 ? "type varer" : "vare"}{" "}
+          {listItems.length} {listItems.length > 1 ? "typer varer" : "type vare"}{" "}
         </h4>
       ) : (
         ""
