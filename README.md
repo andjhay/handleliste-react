@@ -20,13 +20,13 @@ https://handleliste-andrewhay.netlify.app/
 
 ## Installation
 
-To install the application, clone this repository and run the following command in the root directory:
+To install the application, clone this repository and run the following command in the root directory: </br>
 
-npm install
-This will install all the required dependencies.
-
-Usage
-To run the application, use the following command:
-
-npm run start
+npm install </br>
+This will install all the required dependencies. </br>
+</br>
+Usage </br>
+To run the application, use the following command: </br>
+</br>
+npm run start </br>
 This will start the development server and open the application in your default web browser.
