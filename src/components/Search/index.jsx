@@ -3,7 +3,20 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import SearchDropdown from "../SearchDropdown";
 
+/**
+ * Search component
+ * @param {Array} data - The array of data used for searching
+ * @param {Function} addToList - The function that adds an item to the list
+ * @param {String} searchInput - The current search input value
+ * @param {Function} setSearchInput - The function that sets the search input value
+ * @returns {JSX.Element} - The rendered search component
+ */
 function Search({ data, addToList, searchInput, setSearchInput }) {
+
+  /**
+   * Event handler for search
+   * @param {Object} event - The event from input
+   */
   function onChange(event) {
     if (event.currentTarget.value === "") {
       event.currentTarget.value = null;

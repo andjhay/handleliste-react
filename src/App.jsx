@@ -24,6 +24,11 @@ function App() {
     return <h1 className="text-center my-3">Error Loading Products Contact Admin</h1>;
   }
 
+  /**
+   * Adds a product to listItems.
+   *
+   * @param {Object} product - The product object to add.
+   */
   function addToList(product) {
     const listItemIndex = listItems.findIndex((item) => item.name === product.name);
     if (listItemIndex !== -1) {
@@ -39,6 +44,11 @@ function App() {
     }
   }
 
+  /**
+   * Removes a product from listItems.
+   *
+   * @param {Object} product - The product object to remove.
+   */
   function removeFromList(product) {
     const newListItemData = [...listItems];
     const listItemIndex = newListItemData.findIndex((item) => item.name === product.name);
@@ -55,6 +65,9 @@ function App() {
     }
   }
 
+  /**
+   * Clears listItems and the local storage.
+   */
   function clearList() {
     setListItems([]);
     localStorage.clear();
@@ -73,7 +86,14 @@ function App() {
         <div className="container">
           <div className="row g-1 row-cols-1 row-cols-md-2 row-cols-xl-3 ">
             {listItems?.map((product, index) => (
-              <ListCard key={index} product={product} listItems={listItems} addToList={addToList} removeFromList={removeFromList} setListItems={setListItems} />
+              <ListCard
+                key={index}
+                product={product}
+                listItems={listItems}
+                addToList={addToList}
+                removeFromList={removeFromList}
+                setListItems={setListItems}
+              />
             ))}
           </div>
         </div>
