@@ -8,9 +8,11 @@ https://handleliste-andrewhay.netlify.app/
 
 ## Dependencies
 
-Bootstrap
-React-Bootstrap
-Sass
+<ul>
+<li>Bootstrap v-5.2.3</li>
+<li>React-Bootstrap v-2.7.3</li>
+<li>sass v-1.62.0</li>
+</ul>
 
 ## Installation
 
