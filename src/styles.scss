@@ -15,6 +15,11 @@ img.img-fluid {
   height: 30px !important;
 }
 
+.form-check-input:checked {
+  background-color: green !important;
+  border-color: green !important;
+}
+
 .btn-width {
   min-width: 40px !important;
   min-height: 40px !important;
