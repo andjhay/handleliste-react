@@ -3,19 +3,23 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import * as storage from "../../utils/handlers/storage";
 
-function ListCard({ product, addToList, removeFromList }) {
-  const [isChecked, setIsChecked] = useState(false);
+function ListCard({ product, listItems, addToList, removeFromList, setListItems }) {
+  const [isChecked, setIsChecked] = useState(product.checked);
 
   useEffect(() => {
-    const storedState = storage.load(product.name);
-    if (storedState) {
-      setIsChecked(JSON.parse(storedState));
+    const checkedState = product.checked;
+    if (checkedState) {
+      setIsChecked(product.checked);
     }
   }, [product]);
 
   const handleCheckboxChange = (event) => {
+    const newListItems = [...listItems];
+    const listItemIndex = newListItems.findIndex((item) => item.name === product.name);
+    newListItems[listItemIndex].checked = event.target.checked;
+    setListItems(newListItems);
+    storage.save("listItems", newListItems);
     setIsChecked(event.target.checked);
-    localStorage.setItem(product.name, event.target.checked);
   };
 
   return (
@@ -33,7 +37,11 @@ function ListCard({ product, addToList, removeFromList }) {
 
       <button
         onClick={() => removeFromList(product)}
-        className={product.image ? "mx-1 btn btn-width btn-secondary rounded-circle" : "ms-auto mx-1 btn btn-width btn-secondary rounded-circle"}
+        className={
+          product.image
+            ? "mx-1 btn btn-width btn-secondary rounded-circle"
+            : "ms-auto mx-1 btn btn-width btn-secondary rounded-circle"
+        }
       >
         -
       </button>

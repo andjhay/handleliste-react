@@ -2,7 +2,7 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function SearchDropdown({ data, searchInput, addToList }) {
-  if (searchInput)
+  if (searchInput.length >= 3)
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary">
         {data?.length > 0 ? (
@@ -10,7 +10,7 @@ function SearchDropdown({ data, searchInput, addToList }) {
             <ListGroup.Item key={index} className="d-flex">
               <div className="align-items-center">{product.name}</div>
               <div className="ms-auto">
-                <button onClick={() => addToList(product)} className="m-1 btn btn-secondary text-nowrap">
+                <button onClick={() => addToList(product)} className="mx-2 btn btn-secondary text-nowrap">
                   Legg til
                 </button>
               </div>

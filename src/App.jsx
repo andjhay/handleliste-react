@@ -33,9 +33,9 @@ function App() {
       setSearchInput("");
       storage.save("listItems", newListItemData);
     } else {
-      setListItems([...listItems, { ...product, quantity: 1 }]);
+      setListItems([...listItems, { ...product, quantity: 1, checked: false }]);
       setSearchInput("");
-      storage.save("listItems", [...listItems, { ...product, quantity: 1 }]);
+      storage.save("listItems", [...listItems, { ...product, quantity: 1, checked: false }]);
     }
   }
 
@@ -73,7 +73,7 @@ function App() {
         <div className="container">
           <div className="row g-1 row-cols-1 row-cols-md-2 row-cols-xl-3 ">
             {listItems?.map((product, index) => (
-              <ListCard key={index} product={product} addToList={addToList} removeFromList={removeFromList} />
+              <ListCard key={index} product={product} listItems={listItems} addToList={addToList} removeFromList={removeFromList} setListItems={setListItems} />
             ))}
           </div>
         </div>

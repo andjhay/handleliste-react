@@ -20,11 +20,11 @@ function Search({ data, addToList, searchInput, setSearchInput }) {
           className="w-auto flex-grow-1"
           onChange={onChange}
           value={searchInput}
-          placeholder="Søk eller legg til her"
+          placeholder="Skriv in søk eller vare her (min 3 bokstaver for søk)"
           aria-label="Search"
         />
         {searchInput.length > 0 ? (
-          <button onClick={() => addToList({ name: searchInput })} className="m-1 btn btn-secondary text-nowrap">
+          <button onClick={() => addToList({ name: searchInput })} className="mx-1 btn btn-secondary text-nowrap">
             Legg til
           </button>
         ) : (
