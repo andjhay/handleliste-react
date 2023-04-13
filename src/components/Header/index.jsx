@@ -46,8 +46,8 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
         >
           {checkedItems.length} / {listItems.length}{" "}
           {checkedItems.length === listItems.length && listItems.length !== 0
-            ? "Gratulerer! du er ferdig å handle"
-            : "krysset av"}
+            ? "Gratulerer! Du er ferdig å handle!"
+            : "Markert"}
         </h6>
       ) : (
         ""

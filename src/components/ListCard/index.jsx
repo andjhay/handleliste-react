@@ -33,7 +33,7 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
       />
       <span className={isChecked ? "text-decoration-line-through" : "none"}>
         {product.name}
-        {product.current_price ? " - " + product.current_price + " kr stk" : ""}{" "}
+        {product.current_price ? " - " + product.current_price.toFixed(2) + " kr stk" : ""}{" "}
       </span>
 
       {product.image ? <img className="ms-auto img-fluid" alt={product.name} src={product.image} /> : ""}
