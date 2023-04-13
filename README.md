@@ -1,8 +1,13 @@
 # Handleliste App
 
 This is a create-react-app application that allows users to create a shopping list by inputting the item or searching for items and adding them to a list.
+</br>
+</br>
+The app takes inspiration from norwegian COOP and Kupp apps that have built in shopping lists.</br>
+</br>
+Due to having used React and Bootstrap frequently over the past 9 months this was chosen to build the app despite the size and scale of the app not requiring the technology. However using hooks and props has an advantage in quickly making the site dynamic over selecting html elements and updating them with event listeners.
 
-## API 
+## API
 
 the API used for generating search results comes from https://kassal.app/ that offers the service for free as of the date of this projects creation 13/04/2023
 

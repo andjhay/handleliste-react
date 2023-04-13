@@ -1,6 +1,5 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 import SearchDropdown from "../SearchDropdown";
 
 /**
@@ -12,7 +11,6 @@ import SearchDropdown from "../SearchDropdown";
  * @returns {JSX.Element} - The rendered search component
  */
 function Search({ data, addToList, searchInput, setSearchInput }) {
-
   /**
    * Event handler for search
    * @param {Object} event - The event from input
@@ -26,27 +24,25 @@ function Search({ data, addToList, searchInput, setSearchInput }) {
   }
 
   return (
-    <Container>
-      <div className="d-flex flex-row justify-content-center">
+    <div className="">
+      <div className="d-flex flex-row justify-content-center w-75 m-auto">
         <Form.Control
           id="search-box"
-          className="w-auto flex-grow-1"
           onChange={onChange}
           value={searchInput}
-          placeholder="Skriv in søk eller vare her (min 3 bokstaver for søk)"
+          placeholder="Skriv in søk eller egen vare (min 3 bokstaver for søk)"
           aria-label="Search"
         />
         {searchInput.length > 0 ? (
-          <button onClick={() => addToList({ name: searchInput })} className="mx-1 btn btn-secondary text-nowrap">
+          <button onClick={() => addToList({ name: searchInput })} className=" btn btn-secondary text-nowrap">
             Legg til
           </button>
         ) : (
           ""
         )}
       </div>
-
       <SearchDropdown data={data} searchInput={searchInput} addToList={addToList} />
-    </Container>
+    </div>
   );
 }
 

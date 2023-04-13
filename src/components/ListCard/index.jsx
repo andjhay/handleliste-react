@@ -31,7 +31,7 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         checked={isChecked}
         onChange={handleCheckboxChange}
       />
-      <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name}</span>
+      <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name} - {product.current_price} kr stk</span>
 
       {product.image ? <img className="ms-auto img-fluid" alt={product.name} src={product.image} /> : ""}
 

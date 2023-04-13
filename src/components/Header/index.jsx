@@ -29,7 +29,13 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
     <header>
       <h1 className="text-center p-2">Handleliste</h1>
       <Search data={data} addToList={addToList} searchInput={searchInput} setSearchInput={setSearchInput} />
-      {listItems.length > 0 ? <h4 className="text-center p-1">{listItems.length} type vare </h4> : ""}
+      {listItems.length > 0 ? (
+        <h4 className="text-center p-1">
+          {listItems.length} {listItems.length > 1 ? "type varer" : "vare"}{" "}
+        </h4>
+      ) : (
+        ""
+      )}
       {listItems.length > 0 ? (
         <h6
           className={
@@ -40,7 +46,7 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
         >
           {checkedItems.length} / {listItems.length}{" "}
           {checkedItems.length === listItems.length && listItems.length !== 0
-            ? "Gratulere du er ferdig å handle!"
+            ? "Gratulerer! du er ferdig å handle"
             : "krysset av"}
         </h6>
       ) : (
@@ -48,7 +54,7 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
       )}
       {totalCost > 0 ? (
         <h6 className="text-center p-1 ">
-          Estimert {totalCost.toFixed(2)} kr for totalt {totalItems} varer{" "}
+          Estimert {totalCost.toFixed(2)} kr for totalt {totalItems} {totalItems > 1 ? "varer" : "vare"}
         </h6>
       ) : (
         ""
