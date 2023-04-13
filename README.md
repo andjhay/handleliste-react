@@ -2,6 +2,10 @@
 
 This is a create-react-app application that allows users to create a shopping list by inputting the item or searching for items and adding them to a list.
 
+## API 
+
+the API used for generating search results comes from https://kassal.app/ that offers the service for free as of the date of this projects creation 13/04/2023
+
 ## Live Site
 
 https://handleliste-andrewhay.netlify.app/
