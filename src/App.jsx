@@ -110,12 +110,18 @@ function App() {
         {listItems.length > 0 ? (
           <>
             <span className="container-fluid text-black-50">*Estimert, men vil varier fra butikk til butikk.</span>
-            <div className="container text-center">
-              <button onClick={() => clearList()} className="mx-2 my-1 btn btn-secondary">
-                Fjern alle produkter
+            <div className="container d-flex flex-sm-row flex-column w-auto justify-content-center">
+              <button
+                onClick={() => clearList()}
+                className="d-flex mx-2 my-1 btn btn-danger justify-content-center align-content-center text-nowrap"
+              >
+                Alle produkter <span class="material-symbols-outlined mx-1">delete</span>
               </button>
-              <button onClick={() => clearChecked()} className="mx-2 my-1 btn btn-secondary">
-                Fjern markerte produkter
+              <button
+                onClick={() => clearChecked()}
+                className="d-flex mx-2 my-1 btn btn-danger align-content-center justify-content-center text-nowrap"
+              >
+                Markerte produkter <span class="material-symbols-outlined mx-1">delete</span>
               </button>
             </div>
           </>

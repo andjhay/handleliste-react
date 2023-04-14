@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Inter&display=swap");
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 24
+}
+
+
 #dropdown-search {
   z-index: 1;
 }
