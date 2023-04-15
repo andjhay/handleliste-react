@@ -29,8 +29,8 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         checked={isChecked}
         onChange={handleCheckboxChange}
       />
-      <div>
-        <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name}</span> <br />
+      <div className="d-flex flex-column">
+        <span className={isChecked ? "text-decoration-line-through" : ""}>{product.name}</span>
         <span className="fw-bold">{product.current_price ? product.current_price.toFixed(2) + " kr pr stk*" : ""}</span>
       </div>
       <div className="d-flex flex-grow-1 justify-content-end">
