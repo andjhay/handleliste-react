@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
 import * as storage from "../../utils/handlers/storage";
 
 function ListCard({ product, listItems, addToList, removeFromList, setListItems }) {
@@ -23,9 +21,9 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
   };
 
   return (
-    <Card className="col p-1 d-flex flex-row align-items-center">
-      <Form.Check
-        className="mx-2"
+    <div className="card col p-1 d-flex flex-row align-items-center">
+      <input
+        className="mx-2 form-check-input"
         type="checkbox"
         id={product.name}
         checked={isChecked}
@@ -35,7 +33,10 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name}</span> <br />
         <span className="fw-bold">{product.current_price ? product.current_price.toFixed(2) + " kr pr stk*" : ""}</span>
       </div>
-      {product.image ? <img className="ms-auto img-fluid" alt={product.name} src={product.image} /> : ""}
+      <div className="ms-auto">
+        {product.image ? <img className="img-fluid" alt={product.name} src={product.image} /> : ""}
+      </div>
+
       <button
         onClick={() => removeFromList(product)}
         className={
@@ -53,7 +54,7 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
       >
         +
       </button>
-    </Card>
+    </div>
   );
 }
 

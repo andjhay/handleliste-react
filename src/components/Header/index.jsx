@@ -8,8 +8,9 @@ import Search from "../Search";
  * @param {string} searchInput - The current value of the search input field
  * @param {Function} setSearchInput - Function to update the value of the search input field
  * @param {Array} listItems - The list of items in the shopping list
+ * @param {boolean} isError - A flag indicating whether an error occurred.
  */
-function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
+function Header({ data, addToList, searchInput, setSearchInput, listItems, isError }) {
   const [checkedItems, setCheckedItems] = useState([]);
 
   useEffect(() => {
@@ -21,14 +22,19 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems }) {
 
   listItems?.forEach((item) => {
     totalItems = totalItems + item.quantity;
-    console.log(item.current_price);
     if (item.current_price !== undefined) totalCost = totalCost + item.current_price * item.quantity;
   });
 
   return (
     <header>
       <h1 className="text-center p-2">Handleliste</h1>
-      <Search data={data} addToList={addToList} searchInput={searchInput} setSearchInput={setSearchInput} />
+      <Search
+        data={data}
+        addToList={addToList}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        isError={isError}
+      />
       {listItems.length > 0 ? (
         <h4 className="text-center p-1">
           {listItems.length} {listItems.length > 1 ? "typer varer" : "type vare"}{" "}

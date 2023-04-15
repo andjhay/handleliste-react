@@ -1,6 +1,7 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
 import SearchDropdown from "../SearchDropdown";
+
+let timeoutId;
 
 /**
  * Search component
@@ -8,28 +9,33 @@ import SearchDropdown from "../SearchDropdown";
  * @param {Function} addToList - The function that adds an item to the list
  * @param {String} searchInput - The current search input value
  * @param {Function} setSearchInput - The function that sets the search input value
- * @returns {JSX.Element} - The rendered search component
+ * @param {boolean} isError - A flag indicating whether an error occurred.
  */
-function Search({ data, addToList, searchInput, setSearchInput }) {
+function Search({ data, addToList, searchInput, setSearchInput, isError }) {
   /**
-   * Event handler for search
+   * Event handler for search with debounce
    * @param {Object} event - The event from input
    */
   function onChange(event) {
-    if (event.currentTarget.value === "") {
-      event.currentTarget.value = null;
+    let searchTerm = event.currentTarget.value;
+    if (searchTerm === "") {
+      clearTimeout(timeoutId);
+      setSearchInput(searchTerm);
+    } else {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setSearchInput(searchTerm);
+      }, 900);
     }
-    setSearchInput(event.currentTarget.value);
-    console.log(event.currentTarget.value);
   }
 
   return (
     <div className="">
       <div className="d-flex flex-row justify-content-center w-75 m-auto">
-        <Form.Control
+        <input
           id="search-box"
+          className="form-control"
           onChange={onChange}
-          value={searchInput}
           placeholder="Søk eller legg inn egen vare"
           aria-label="Search"
         />
@@ -41,7 +47,7 @@ function Search({ data, addToList, searchInput, setSearchInput }) {
           ""
         )}
       </div>
-      <SearchDropdown data={data} searchInput={searchInput} addToList={addToList} />
+      <SearchDropdown data={data} searchInput={searchInput} addToList={addToList} isError={isError} />
     </div>
   );
 }

@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import ListCard from "./components/ListCard";
 import * as storage from "./utils/handlers/storage.js";
 
+const searchBar = document.getElementById("search-box");
+
 function App() {
   let storedItems = storage.load("listItems");
   if (storedItems === null) {
@@ -19,10 +21,6 @@ function App() {
   let searchUrl = baseUrl + `/?size=5&search=` + searchInput;
   const { data, isError } = useApi(searchUrl);
   const [listItems, setListItems] = useState(storedItems);
-
-  if (isError) {
-    return <h1 className="text-center my-3">Error Loading Products Contact Admin</h1>;
-  }
 
   /**
    * Adds a product to listItems.
@@ -37,10 +35,12 @@ function App() {
       setListItems(newListItemData);
       setSearchInput("");
       storage.save("listItems", newListItemData);
+      searchBar.value = "";
     } else {
       setListItems([...listItems, { ...product, quantity: 1, checked: false }]);
       setSearchInput("");
       storage.save("listItems", [...listItems, { ...product, quantity: 1, checked: false }]);
+      searchBar.value = "";
     }
   }
 
@@ -91,6 +91,7 @@ function App() {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         listItems={listItems}
+        isError={isError}
       />
       <main className="d-flex flex-column flex-grow-1">
         <div className="container-fluid">
@@ -115,13 +116,13 @@ function App() {
                 onClick={() => clearList()}
                 className="d-flex mx-2 my-1 btn btn-danger justify-content-center align-content-center text-nowrap"
               >
-                Alle produkter <span class="material-symbols-outlined mx-1">delete</span>
+                Alle produkter <span className="material-symbols-outlined mx-1">delete</span>
               </button>
               <button
                 onClick={() => clearChecked()}
                 className="d-flex mx-2 my-1 btn btn-danger align-content-center justify-content-center text-nowrap"
               >
-                Markerte produkter <span class="material-symbols-outlined mx-1">delete</span>
+                Markerte produkter <span className="material-symbols-outlined mx-1">delete</span>
               </button>
             </div>
           </>

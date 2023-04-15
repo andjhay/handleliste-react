@@ -1,8 +1,24 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
-function SearchDropdown({ data, searchInput, addToList }) {
-  if (searchInput.length >= 3)
+/**
+ * SearchDropdown component displays a dropdown list of search results if API fails returns an error.
+ *
+ * @param {Array} data - The data to display in the dropdown list.
+ * @param {string} searchInput - The search query string.
+ * @param {function} addToList - The function to add a selected item to a list.
+ * @param {boolean} isError - A flag indicating whether an error occurred.
+ */
+function SearchDropdown({ data, searchInput, addToList, isError }) {
+  if (isError) {
+    return (
+      <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
+        <ListGroup.Item>!Error Fetching Products!</ListGroup.Item>
+      </ListGroup>
+    );
+  }
+
+  if (searchInput.length >= 3 && searchInput !== "")
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
         {data?.length > 0 ? (
