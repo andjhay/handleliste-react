@@ -40,9 +40,11 @@ function Search({ data, addToList, searchInput, setSearchInput, isLoading, isErr
           placeholder="Søk eller legg inn egen vare"
           aria-label="Search"
         />
-        <button onClick={() => addToList({ name: searchInput })} className={searchInput < 1 ? "disabled btn btn-secondary text-nowrap" : "btn btn-secondary text-nowrap"}>
-          Legg til
-        </button>
+        {searchInput ? (
+          <button onClick={() => addToList({ name: searchInput })} className="btn btn-secondary text-nowrap">
+            Legg til
+          </button>
+        ) : null}
       </div>
       <SearchDropdown
         data={data}
