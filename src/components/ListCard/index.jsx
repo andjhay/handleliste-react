@@ -33,7 +33,7 @@ function ListCard({ product, listItems, addToList, removeFromList, setListItems 
         <span className={isChecked ? "text-decoration-line-through" : "none"}>{product.name}</span> <br />
         <span className="fw-bold">{product.current_price ? product.current_price.toFixed(2) + " kr pr stk*" : ""}</span>
       </div>
-      <div className="ms-auto">
+      <div className="d-flex flex-grow-1 justify-content-end">
         {product.image ? <img className="img-fluid" alt={product.name} src={product.image} /> : ""}
       </div>
 
