@@ -1,5 +1,6 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
+import { basicSearch } from "../../utils/basicSearch";
 
 /**
  * SearchDropdown component displays a dropdown list of search results if API fails returns an error.
@@ -12,6 +13,7 @@ import ListGroup from "react-bootstrap/ListGroup";
  */
 function SearchDropdown({ data, searchInput, addToList, isLoading, isError }) {
   if (isError) {
+    console.log("Error");
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
         <ListGroup.Item>!Error Fetching Products!</ListGroup.Item>
@@ -19,6 +21,7 @@ function SearchDropdown({ data, searchInput, addToList, isLoading, isError }) {
     );
   }
   if (searchInput.length > 0 && isLoading) {
+    console.log("Loading");
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
         <ListGroup.Item>Loading Products</ListGroup.Item>
@@ -26,13 +29,15 @@ function SearchDropdown({ data, searchInput, addToList, isLoading, isError }) {
     );
   }
   if (searchInput.length >= 3 && data.length === 0) {
+    console.log("no match");
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
         <ListGroup.Item>No Products match the search</ListGroup.Item>
       </ListGroup>
     );
   }
-  if (searchInput.length >= 3 && data[0].name.toLowerCase().includes(searchInput.toLowerCase()) && isLoading === false)
+  console.log("OK");
+  if (searchInput.length >= 3 && data !== basicSearch)
     return (
       <ListGroup id="dropdown-search" className="position-absolute bg-secondary w-75 m-auto">
         {data.length > 0 ? (
