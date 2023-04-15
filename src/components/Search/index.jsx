@@ -9,9 +9,10 @@ let timeoutId;
  * @param {Function} addToList - The function that adds an item to the list
  * @param {String} searchInput - The current search input value
  * @param {Function} setSearchInput - The function that sets the search input value
+ * @param {boolean} isLoading - status on data loading.
  * @param {boolean} isError - A flag indicating whether an error occurred.
  */
-function Search({ data, addToList, searchInput, setSearchInput, isError }) {
+function Search({ data, addToList, searchInput, setSearchInput, isLoading, isError }) {
   /**
    * Event handler for search with debounce
    * @param {Object} event - The event from input
@@ -39,15 +40,17 @@ function Search({ data, addToList, searchInput, setSearchInput, isError }) {
           placeholder="Søk eller legg inn egen vare"
           aria-label="Search"
         />
-        {searchInput.length > 0 ? (
-          <button onClick={() => addToList({ name: searchInput })} className=" btn btn-secondary text-nowrap">
-            Legg til
-          </button>
-        ) : (
-          ""
-        )}
+        <button onClick={() => addToList({ name: searchInput })} className={searchInput < 1 ? "disabled btn btn-secondary text-nowrap" : "btn btn-secondary text-nowrap"}>
+          Legg til
+        </button>
       </div>
-      <SearchDropdown data={data} searchInput={searchInput} addToList={addToList} isError={isError} />
+      <SearchDropdown
+        data={data}
+        searchInput={searchInput}
+        addToList={addToList}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </div>
   );
 }

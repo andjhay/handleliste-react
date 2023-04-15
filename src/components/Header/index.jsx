@@ -8,9 +8,10 @@ import Search from "../Search";
  * @param {string} searchInput - The current value of the search input field
  * @param {Function} setSearchInput - Function to update the value of the search input field
  * @param {Array} listItems - The list of items in the shopping list
+ * @param {boolean} isLoading - status on data loading.
  * @param {boolean} isError - A flag indicating whether an error occurred.
  */
-function Header({ data, addToList, searchInput, setSearchInput, listItems, isError }) {
+function Header({ data, addToList, searchInput, setSearchInput, listItems, isLoading, isError }) {
   const [checkedItems, setCheckedItems] = useState([]);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function Header({ data, addToList, searchInput, setSearchInput, listItems, isErr
         addToList={addToList}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
+        isLoading={isLoading}
         isError={isError}
       />
       {listItems.length > 0 ? (

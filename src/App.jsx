@@ -9,8 +9,6 @@ import Footer from "./components/Footer";
 import ListCard from "./components/ListCard";
 import * as storage from "./utils/handlers/storage.js";
 
-const searchBar = document.getElementById("search-box");
-
 function App() {
   let storedItems = storage.load("listItems");
   if (storedItems === null) {
@@ -19,7 +17,7 @@ function App() {
 
   const [searchInput, setSearchInput] = useState("");
   let searchUrl = baseUrl + `/?size=5&search=` + searchInput;
-  const { data, isError } = useApi(searchUrl);
+  const { data, isLoading, isError } = useApi(searchUrl);
   const [listItems, setListItems] = useState(storedItems);
 
   /**
@@ -28,6 +26,7 @@ function App() {
    * @param {Object} product - The product object to add.
    */
   function addToList(product) {
+    const searchBar = document.getElementById("search-box");
     const listItemIndex = listItems.findIndex((item) => item.name === product.name);
     if (listItemIndex !== -1) {
       let newListItemData = [...listItems];
@@ -91,6 +90,7 @@ function App() {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         listItems={listItems}
+        isLoading={isLoading}
         isError={isError}
       />
       <main className="d-flex flex-column flex-grow-1">
